@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oyunsatış</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+
+body{
+  background:#080b12;
+  color:white;
+}
+
+header{
+  background:#111827;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #273244;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  color:#38bdf8;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:18px;
+}
+
+.hero{
+  text-align:center;
+  padding:70px 20px;
+  background:linear-gradient(135deg,#111827,#172554);
+}
+
+.hero h1{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.hero span{
+  color:#38bdf8;
+}
+
+.hero p{
+  color:#aeb8c8;
+  margin-bottom:25px;
+}
+
+.search{
+  width:90%;
+  max-width:600px;
+  padding:16px;
+  border:0;
+  border-radius:12px;
+  outline:none;
+  font-size:16px;
+}
+
+.container{
+  width:88%;
+  max-width:1200px;
+  margin:40px auto;
+}
+
+.title{
+  margin-bottom:20px;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+}
+
+.game{
+  background:#111827;
+  border:1px solid #273244;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.game:hover{
+  border-color:#38bdf8;
+  transform:translateY(-3px);
+}
+
+.icon{
+  font-size:50px;
+  margin-bottom:10px;
+}
+
+.listings{
+  margin-top:50px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#111827;
+  border:1px solid #273244;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.card-top{
+  height:140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:55px;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+}
+
+.card-body{
+  padding:18px;
+}
+
+.card-body p{
+  color:#9ca3af;
+  margin:10px 0;
+}
+
+.price{
+  color:#22c55e;
+  font-size:20px;
+  font-weight:bold;
+}
+
+button{
+  width:100%;
+  margin-top:15px;
+  padding:12px;
+  border:0;
+  border-radius:9px;
+  background:#38bdf8;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#0ea5e9;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  margin-top:60px;
+  background:#05070c;
+  color:#70798a;
+}
+
+@media(max-width:600px){
+  .hero h1{font-size:32px}
+  nav a{font-size:13px;margin-left:8px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🎮 Oyunsatış</div>
+
+  <nav>
+    <a href="#">Ana Sayfa</a>
+    <a href="#oyunlar">Oyunlar</a>
+    <a href="#ilanlar">İlanlar</a>
+  </nav>
+</header>
+
+<section class="hero">
+
+  <h1>Oyun Hesabını <span>Bul veya Sat</span></h1>
+
+  <p>PUBG Mobile, Brawl Stars ve daha birçok oyun hesabı</p>
+
+  <input
+    id="search"
+    class="search"
+    type="text"
+    placeholder="Oyun veya hesap ara..."
+    onkeyup="search()"
+  >
+
+</section>
+
+<div class="container">
+
+<section id="oyunlar">
+
+<h2 class="title">🎮 Popüler Oyunlar</h2>
+
+<div class="games">
+
+<div class="game" onclick="filterGame('PUBG')">
+<div class="icon">🔫</div>
+<h3>PUBG Mobile</h3>
+<p>Hesapları gör</p>
+</div>
+
+<div class="game" onclick="filterGame('Brawl')">
+<div class="icon">⭐</div>
+<h3>Brawl Stars</h3>
+<p>Hesapları gör</p>
+</div>
+
+<div class="game" onclick="filterGame('Free Fire')">
+<div class="icon">🔥</div>
+<h3>Free Fire</h3>
+<p>Hesapları gör</p>
+</div>
+
+<div class="game" onclick="filterGame('Fortnite')">
+<div class="icon">🎯</div>
+<h3>Fortnite</h3>
+<p>Hesapları gör</p>
+</div>
+
+</div>
+</section>
+
+
+<section class="listings" id="ilanlar">
+
+<h2 class="title">🔥 Son İlanlar</h2>
+
+<div class="cards" id="cards">
+
+<div class="card" data-game="PUBG">
+<div class="card-top">🔫</div>
+
+<div class="card-body">
+<h3>PUBG Mobile Hesabı</h3>
+<p>80+ koleksiyon • Nadir kostümler</p>
+<div class="price">5.000 TL</div>
+<button onclick="details()">İncele</button>
+</div>
+</div>
+
+
+<div class="card" data-game="Brawl">
+<div class="card-top">⭐</div>
+
+<div class="card-body">
+<h3>Brawl Stars Hesabı</h3>
+<p>50.000 kupa • Özel karakterler</p>
+<div class="price">2.500 TL</div>
+<button onclick="details()">İncele</button>
+</div>
+</div>
+
+
+<div class="card" data-game="Free Fire">
+<div class="card-top">🔥</div>
+
+<div class="card-body">
+<h3>Free Fire Hesabı</h3>
+<p>Nadir kostümler • Eski hesap</p>
+<div class="price">1.800 TL</div>
+<button onclick="details()">İncele</button>
+</div>
+</div>
+
+
+<div class="card" data-game="Fortnite">
+<div class="card-top">🎯</div>
+
+<div class="card-body">
+<h3>Fortnite Hesabı</h3>
+<p>Nadir skinler • Eski sezon eşyaları</p>
+<div class="price">3.200 TL</div>
+<button onclick="details()">İncele</button>
+</div>
+</div>
+
+</div>
+</section>
+
+</div>
+
+<footer>
+© 2026 Oyunsatış
+</footer>
+
+<script>
+
+function details(){
+  alert("İlan detayları yakında aktif olacak.");
+}
+
+function search(){
+
+  let value=document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  let cards=document.querySelectorAll(".card");
+
+  cards.forEach(card=>{
+
+    let text=card.innerText.toLowerCase();
+
+    card.style.display=
+      text.includes(value) ? "block" : "none";
+
+  });
+}
+
+function filterGame(game){
+
+  let cards=document.querySelectorAll(".card");
+
+  cards.forEach(card=>{
+
+    card.style.display=
+      card.dataset.game===game ? "block" : "none";
+
+  });
+
+  document
+    .getElementById("ilanlar")
+    .scrollIntoView({behavior:"smooth"});
+}
+
+</script>
+
+</body>
+</html>
