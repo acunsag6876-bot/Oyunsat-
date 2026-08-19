@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Oyunsatış | Oyun Pazarı</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#070b12;
+    color:#fff;
+}
+
+header{
+    height:70px;
+    background:#0d131d;
+    border-bottom:1px solid #202a39;
+    display:flex;
+    align-items:center;
+    padding:0 5%;
+    gap:35px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#27a9ff;
+    white-space:nowrap;
+}
+
+nav{
+    display:flex;
+    gap:25px;
+    flex:1;
+}
+
+nav a{
+    color:#aeb8c7;
+    text-decoration:none;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#fff;
+}
+
+.header-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.login{
+    background:#17202d;
+    color:white;
+    border:1px solid #2b394b;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.sell{
+    background:#21a4f3;
+    color:#04111d;
+    border:0;
+    padding:11px 16px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.hero{
+    background:
+    radial-gradient(circle at 20% 20%,#123b5d,transparent 35%),
+    radial-gradient(circle at 80% 20%,#25135a,transparent 35%),
+    #090f18;
+
+    padding:75px 7%;
+}
+
+.hero-content{
+    max-width:1150px;
+    margin:auto;
+}
+
+.hero h1{
+    font-size:46px;
+    max-width:700px;
+    line-height:1.1;
+}
+
+.hero h1 span{
+    color:#24a9ff;
+}
+
+.hero p{
+    color:#9da9b8;
+    margin:20px 0 30px;
+    font-size:17px;
+}
+
+.search-box{
+    display:flex;
+    max-width:700px;
+}
+
+.search-box input{
+    flex:1;
+    padding:17px;
+    background:#fff;
+    border:0;
+    outline:none;
+    border-radius:10px 0 0 10px;
+    font-size:15px;
+}
+
+.search-box button{
+    padding:0 25px;
+    border:0;
+    background:#24a9ff;
+    font-weight:bold;
+    border-radius:0 10px 10px 0;
+    cursor:pointer;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:45px auto;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.section-head h2{
+    font-size:25px;
+}
+
+.section-head a{
+    color:#24a9ff;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:15px;
+}
+
+.category{
+    background:#0f1722;
+    border:1px solid #202c3d;
+    border-radius:12px;
+    padding:22px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-4px);
+    border-color:#24a9ff;
+}
+
+.category-icon{
+    font-size:35px;
+    margin-bottom:13px;
+}
+
+.category h3{
+    font-size:16px;
+}
+
+.category p{
+    color:#788698;
+    font-size:12px;
+    margin-top:6px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:18px;
+}
+
+.product{
+    background:#0e151f;
+    border:1px solid #202c3d;
+    border-radius:13px;
+    overflow:hidden;
+    transition:.2s;
+}
+
+.product:hover{
+    transform:translateY(-4px);
+    border-color:#31506e;
+}
+
+.product-image{
+    height:145px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:55px;
+    background:linear-gradient(135deg,#172b4b,#261b48);
+}
+
+.product-body{
+    padding:17px;
+}
+
+.badge{
+    display:inline-block;
+    background:#162d24;
+    color:#36d68b;
+    padding:5px 8px;
+    border-radius:5px;
+    font-size:11px;
+    margin-bottom:10px;
+}
+
+.product h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.description{
+    color:#8390a0;
+    font-size:13px;
+    line-height:1.5;
+    min-height:40px;
+}
+
+.seller{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:14px;
+    color:#8d99a8;
+    font-size:12px;
+}
+
+.avatar{
+    width:25px;
+    height:25px;
+    background:#26384c;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.product-bottom{
+    margin-top:15px;
+    padding-top:13px;
+    border-top:1px solid #202a37;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.price{
+    color:#36d68b;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.view{
+    background:#182534;
+    color:#fff;
+    border:1px solid #2b4055;
+    padding:9px 12px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.view:hover{
+    background:#24a9ff;
+    color:#00101b;
+}
+
+.info{
+    margin-top:55px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.info-box{
+    background:#0e151f;
+    border:1px solid #202c3d;
+    border-radius:12px;
+    padding:25px;
+}
+
+.info-box div{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.info-box h3{
+    margin-bottom:8px;
+}
+
+.info-box p{
+    color:#8995a4;
+    font-size:13px;
+    line-height:1.6;
+}
+
+footer{
+    margin-top:70px;
+    background:#05080d;
+    border-top:1px solid #1c2532;
+    padding:40px 6%;
+    color:#707c8d;
+}
+
+.footer-logo{
+    color:#24a9ff;
+    font-size:21px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:500;
+    padding:20px;
+}
+
+.modal-box{
+    background:#101923;
+    border:1px solid #29394d;
+    width:100%;
+    max-width:420px;
+    padding:25px;
+    border-radius:14px;
+}
+
+.modal-box h2{
+    margin-bottom:15px;
+}
+
+.modal-box p{
+    color:#96a3b3;
+    line-height:1.6;
+}
+
+.close{
+    float:right;
+    background:none;
+    border:0;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+
+@media(max-width:700px){
+
+    header{
+        height:auto;
+        padding:15px;
+        flex-wrap:wrap;
+        gap:15px;
+    }
+
+    nav{
+        order:3;
+        width:100%;
+        justify-content:center;
+    }
+
+    .hero{
+        padding:50px 6%;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .search-box{
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .search-box input{
+        border-radius:9px;
+    }
+
+    .search-box button{
+        padding:15px;
+        border-radius:9px;
+    }
+
+    .info{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">🎮 Oyunsatış</div>
+
+<nav>
+<a href="#">Ana Sayfa</a>
+<a href="#oyunlar">Oyunlar</a>
+<a href="#ilanlar">İlanlar</a>
+<a href="#guvenli">Güvenli Alışveriş</a>
+</nav>
+
+<div class="header-buttons">
+<button class="login" onclick="openModal('Giriş')">Giriş Yap</button>
+<button class="sell" onclick="openModal('İlan Ver')">+ İlan Ver</button>
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Oyun hesaplarını <span>güvenle</span> keşfet</h1>
+
+<p>
+PUBG Mobile, Brawl Stars, Free Fire ve daha birçok oyunda
+hesaplarını keşfet veya kendi ilanını oluştur.
+</p>
+
+<div class="search-box">
+
+<input
+id="search"
+type="text"
+placeholder="Oyun, hesap veya ilan ara..."
+onkeyup="searchProducts()"
+>
+
+<button>🔎 Ara</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<main class="container">
+
+
+<section id="oyunlar">
+
+<div class="section-head">
+
+<h2>Popüler Oyunlar</h2>
+
+<a href="#ilanlar">Tümünü Gör →</a>
+
+</div>
+
+
+<div class="categories">
+
+<div class="category" onclick="filterGame('PUBG')">
+<div class="category-icon">🔫</div>
+<h3>PUBG Mobile</h3>
+<p>Hesaplar</p>
+</div>
+
+<div class="category" onclick="filterGame('Brawl')">
+<div class="category-icon">⭐</div>
+<h3>Brawl Stars</h3>
+<p>Hesaplar</p>
+</div>
+
+<div class="category" onclick="filterGame('Free Fire')">
+<div class="category-icon">🔥</div>
+<h3>Free Fire</h3>
+<p>Hesaplar</p>
+</div>
+
+<div class="category" onclick="filterGame('Fortnite')">
+<div class="category-icon">🎯</div>
+<h3>Fortnite</h3>
+<p>Hesaplar</p>
+</div>
+
+<div class="category" onclick="filterGame('Valorant')">
+<div class="category-icon">⚡</div>
+<h3>Valorant</h3>
+<p>Hesaplar</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="ilanlar" style="margin-top:55px">
+
+<div class="section-head">
+
+<h2>🔥 Öne Çıkan İlanlar</h2>
+
+<a href="#">Tüm ilanlar →</a>
+
+</div>
+
+
+<div class="products" id="products">
+
+
+<div class="product" data-game="PUBG">
+
+<div class="product-image">🔫</div>
+
+<div class="product-body">
+
+<span class="badge">✓ Güvenilir Satıcı</span>
+
+<h3>PUBG Mobile Hesabı</h3>
+
+<p class="description">
+80+ koleksiyon, nadir kostümler ve özel eşyalar.
+</p>
+
+<div class="seller">
+<div class="avatar">👤</div>
+Satıcı: GameMaster ⭐ 4.9
+</div>
+
+<div class="product-bottom">
+
+<div class="price">5.000 TL</div>
+
+<button class="view" onclick="details('PUBG Mobile Hesabı','5.000 TL')">
+İncele
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="product" data-game="Brawl">
+
+<div class="product-image">⭐</div>
+
+<div class="product-body">
+
+<span class="badge">✓ Güvenilir Satıcı</span>
+
+<h3>Brawl Stars Hesabı</h3>
+
+<p class="description">
+50.000 kupa, birçok karakter ve özel skin.
+</p>
+
+<div class="seller">
+<div class="avatar">👤</div>
+Satıcı: BrawlKing ⭐ 4.8
+</div>
+
+<div class="product-bottom">
+
+<div class="price">2.500 TL</div>
+
+<button class="view" onclick="details('Brawl Stars Hesabı','2.500 TL')">
+İncele
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="product" data-game="Free Fire">
+
+<div class="product-image">🔥</div>
+
+<div class="product-body">
+
+<span class="badge">✓ Güvenilir Satıcı</span>
+
+<h3>Free Fire Hesabı</h3>
+
+<p class="description">
+Eski hesap, nadir kostümler ve özel eşyalar.
+</p>
+
+<div class="seller">
+<div class="avatar">👤</div>
+Satıcı: FirePro ⭐ 4.7
+</div>
+
+<div class="product-bottom">
+
+<div class="price">1.800 TL</div>
+
+<button class="view" onclick="details('Free Fire Hesabı','1.800 TL')">
+İncele
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="product" data-game="Fortnite">
+
+<div class="product-image">🎯</div>
+
+<div class="product-body">
+
+<span class="badge">✓ Güvenilir Satıcı</span>
+
+<h3>Fortnite Hesabı</h3>
+
+<p class="description">
+Nadir skinler ve eski sezon eşyaları.
+</p>
+
+<div class="seller">
+<div class="avatar">👤</div>
+Satıcı: FortniteTR ⭐ 5.0
+</div>
+
+<div class="product-bottom">
+
+<div class="price">3.200 TL</div>
+
+<button class="view" onclick="details('Fortnite Hesabı','3.200 TL')">
+İncele
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="product" data-game="Valorant">
+
+<div class="product-image">⚡</div>
+
+<div class="product-body">
+
+<span class="badge">✓ Güvenilir Satıcı</span>
+
+<h3>Valorant Hesabı</h3>
+
+<p class="description">
+Özel skinler ve yüksek seviye hesap.
+</p>
+
+<div class="seller">
+<div class="avatar">👤</div>
+Satıcı: ValorantTR ⭐ 4.9
+</div>
+
+<div class="product-bottom">
+
+<div class="price">2.900 TL</div>
+
+<button class="view" onclick="details('Valorant Hesabı','2.900 TL')">
+İncele
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<section class="info" id="guvenli">
+
+<div class="info-box">
+<div>🛡️</div>
+<h3>Güvenli Alışveriş</h3>
+<p>
+Alıcı ve satıcıların daha güvenli şekilde
+işlem yapabilmesi için tasarlanmış pazar yeri.
+</p>
+</div>
+
+<div class="info-box">
+<div>⚡</div>
+<h3>Hızlı İşlem</h3>
+<p>
+İlanları kolayca bul, detaylarını incele ve
+satıcıyla iletişime geç.
+</p>
+</div>
+
+<div class="info-box">
+<div>⭐</div>
+<h3>Satıcı Puanları</h3>
+<p>
+Satıcıların değerlendirmelerini inceleyerek
+daha bilinçli seçim yap.
+</p>
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div class="footer-logo">🎮 Oyunsatış</div>
+
+<p>Oyun dünyasının yeni pazar yeri.</p>
+
+</footer>
+
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal()">×</button>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
+<button class="sell" style="width:100%;margin-top:20px" onclick="closeModal()">
+Tamam
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+function openModal(type){
+
+document.getElementById("modal").style.display="flex";
+
+document.getElementById("modalTitle").innerText=type;
+
+if(type==="Giriş"){
+document.getElementById("modalText").innerText=
+"Giriş sistemi bir sonraki aşamada aktif edilecek.";
+}else{
+document.getElementById("modalText").innerText=
+"İlan verme sistemi bir sonraki aşamada aktif edilecek.";
+}
+
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+
+function details(name,price){
+
+document.getElementById("modal").style.display="flex";
+
+document.getElementById("modalTitle").innerText=name;
+
+document.getElementById("modalText").innerText=
+"Fiyat: "+price+
+" — İlan detayları ve satın alma sistemi yakında aktif olacak.";
+
+}
+
+
+function searchProducts(){
+
+let value=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+let products=document.querySelectorAll(".product");
+
+products.forEach(product=>{
+
+let text=product.innerText.toLowerCase();
+
+product.style.display=
+text.includes(value) ? "block" : "none";
+
+});
+
+}
+
+
+function filterGame(game){
+
+let products=document.querySelectorAll(".product");
+
+products.forEach(product=>{
+
+product.style.display=
+product.dataset.game===game ? "block" : "none";
+
+});
+
+document
+.getElementById("ilanlar")
+.scrollIntoView({behavior:"smooth"});
+
+}
+
+</script>
+
+</body>
+</html>
